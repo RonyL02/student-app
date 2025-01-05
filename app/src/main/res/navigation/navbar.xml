@@ -3,24 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navbar"
-    app:startDestination="@id/student_list_fragment">
-
+    app:startDestination="@id/studentListFragment">
     <fragment
-        android:id="@+id/student_list_fragment"
-        android:name="com.col.studentapp.StudentListFragment"
-        android:label="Students List"
+        android:id="@+id/studentListFragment"
+        android:name="com.col.studentapp.StudentList.StudentListFragment"
+        android:label="fragment_student_list"
         tools:layout="@layout/fragment_student_list" >
         <action
-            android:id="@+id/action_student_list_fragment_to_student_details_fragment"
-            app:destination="@id/student_details_fragment" />
+            android:id="@+id/action_studentListFragment_to_studentDetailsFragment"
+            app:destination="@id/studentDetailsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/student_details_fragment"
+        android:id="@+id/studentDetailsFragment"
         android:name="com.col.studentapp.StudentDetailsFragment"
-        android:label="Students Details"
+        android:label="fragment_student_details"
         tools:layout="@layout/fragment_student_details" >
         <action
-            android:id="@+id/action_student_details_fragment_to_student_list_fragment"
-            app:destination="@id/student_list_fragment" />
+            android:id="@+id/action_studentDetailsFragment_to_studentListFragment"
+            app:destination="@id/studentListFragment" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="checked"
+            app:argType="boolean" />
     </fragment>
 </navigation>
