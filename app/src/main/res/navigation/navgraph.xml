@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navbar"
+    app:startDestination="@id/student_list_fragment">
+
+    <fragment
+        android:id="@+id/student_list_fragment"
+        android:name="com.col.studentapp.StudentListFragment"
+        android:label="Students List"
+        tools:layout="@layout/fragment_student_list" >
+        <action
+            android:id="@+id/action_student_list_fragment_to_student_details_fragment"
+            app:destination="@id/student_details_fragment" />
+        <action
+            android:id="@+id/action_student_list_fragment_to_createStudent"
+            app:destination="@id/createStudent" />
+    </fragment>
+    <fragment
+        android:id="@+id/student_details_fragment"
+        android:name="com.col.studentapp.StudentDetailsFragment"
+        android:label="Students Details"
+        tools:layout="@layout/fragment_student_details" >
+        <action
+            android:id="@+id/action_student_details_fragment_to_editStudent"
+            app:destination="@id/editStudent" />
+    </fragment>
+    <fragment
+        android:id="@+id/createStudent"
+        android:name="com.col.studentapp.CreateStudentFragment"
+        android:label="fragment_create_student"
+        tools:layout="@layout/fragment_create_student" />
+    <fragment
+        android:id="@+id/editStudent"
+        android:name="com.col.studentapp.EditStudentFragment"
+        android:label="fragment_edit_student"
+        tools:layout="@layout/fragment_edit_student" />
+</navigation>
