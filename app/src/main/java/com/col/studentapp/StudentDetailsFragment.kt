@@ -17,7 +17,7 @@ class StudentDetailsFragment : Fragment() {
 
         val button = view.findViewById<Button>(R.id.goToStudentList)
         button.setOnClickListener {
-            findNavController().navigate(R.id.action_studentDetailsFragment_to_studentListFragment)
+            findNavController().popBackStack()
         }
 
         return view
