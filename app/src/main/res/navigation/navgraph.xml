@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_student_list_fragment_to_student_details_fragment"
             app:destination="@id/student_details_fragment" />
+        <action
+            android:id="@+id/action_student_list_fragment_to_createStudent"
+            app:destination="@id/createStudent" />
     </fragment>
     <fragment
         android:id="@+id/student_details_fragment"
@@ -20,7 +23,17 @@
         android:label="Students Details"
         tools:layout="@layout/fragment_student_details" >
         <action
-            android:id="@+id/action_student_details_fragment_to_student_list_fragment"
-            app:destination="@id/student_list_fragment" />
+            android:id="@+id/action_student_details_fragment_to_editStudent"
+            app:destination="@id/editStudent" />
     </fragment>
+    <fragment
+        android:id="@+id/createStudent"
+        android:name="com.col.studentapp.CreateStudentFragment"
+        android:label="fragment_create_student"
+        tools:layout="@layout/fragment_create_student" />
+    <fragment
+        android:id="@+id/editStudent"
+        android:name="com.col.studentapp.EditStudentFragment"
+        android:label="fragment_edit_student"
+        tools:layout="@layout/fragment_edit_student" />
 </navigation>
