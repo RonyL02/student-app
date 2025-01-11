@@ -3,7 +3,7 @@ package com.col.studentapp.StudentList
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.col.studentapp.R
+import com.col.studentapp.databinding.StudentRowBinding
 
 data class Student(
     val id: Int,
@@ -24,7 +24,7 @@ class StudentRecyclerAdapter(private var students: List<Student>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentViewHolder {
         val inflation = LayoutInflater.from(parent.context)
-        val view = inflation.inflate(R.layout.student_row, parent, false)
+        val view = StudentRowBinding.inflate(inflation, parent, false)
         return StudentViewHolder(view, listener)
     }
 

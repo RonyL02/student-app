@@ -1,46 +1,44 @@
 package com.col.studentapp.StudentList
 
-import android.view.View
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.col.studentapp.R
+import com.col.studentapp.databinding.StudentRowBinding
 
 class StudentViewHolder(
-    itemView: View,
+    itemView: StudentRowBinding,
     listener: OnItemClickListener
-): RecyclerView.ViewHolder(itemView) {
-
-    private var nameTextView: TextView? = null
-    private var idTextView: TextView? = null
-    private var checkBox: CheckBox? = null
-    private var student: Student? = null
+): RecyclerView.ViewHolder(itemView.root) {
+    private var nameTextView: TextView
+    private var idTextView: TextView
+    private var checkBox: CheckBox
+    private lateinit var student: Student
 
     init {
-        nameTextView = itemView.findViewById(R.id.student_row_name_text_view)
-        idTextView = itemView.findViewById(R.id.student_row_id_text_view)
-        checkBox = itemView.findViewById(R.id.student_row_check_box)
+        nameTextView = itemView.studentRowNameTextView
+        idTextView = itemView.studentRowIdTextView
+        checkBox = itemView.studentRowCheckBox
 
-        checkBox?.apply {
+        checkBox.apply {
             setOnClickListener { view ->
                 (tag as? Int)?.let {
-                    student?.isChecked = (view as? CheckBox)?.isChecked ?: false
+                    student.isChecked = (view as? CheckBox)?.isChecked ?: false
                 }
             }
         }
 
-        itemView.setOnClickListener {
-            listener.onItemClick(student!!)
+        itemView.root.setOnClickListener {
+            listener.onItemClick(student)
         }
     }
 
-    fun bind(student: Student?, position: Int) {
-        println(student?.name)
+    fun bind(student: Student, position: Int) {
+        println(student.name)
         this.student = student
-        nameTextView?.text = student?.name
-        idTextView?.text = student?.id.toString()
-        checkBox?.apply {
-            isChecked = student?.isChecked ?: false
+        nameTextView.text = student.name
+        student.id.toString().also { idTextView.text = it }
+        checkBox.apply {
+            isChecked = student.isChecked
             tag = position
         }
     }
