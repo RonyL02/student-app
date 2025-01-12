@@ -26,13 +26,13 @@ class CreateStudentActivity : AppCompatActivity() {
     private fun onSaveClicked(view: View) {
         // Retrieve input data from user
         val name = binding.nameEditText.text.toString()
-        val id = binding.idEditText.text.toString()
+        val id = binding.idEditText.text.toString().toIntOrNull()
         val phone = binding.phoneEditText.text.toString()
         val address = binding.addressEditText.text.toString()
         val isChecked = binding.checkedCheckBox.isChecked
 
         // Validate input fields
-        if (name.isEmpty() || id.isEmpty() || phone.isEmpty() || address.isEmpty()) {
+        if (name.isEmpty() || id == null || phone.isEmpty() || address.isEmpty()) {
             binding.saveMessageTextView.text = "Please fill out all fields."
             binding.saveMessageTextView.visibility = View.VISIBLE // Show the message
             return

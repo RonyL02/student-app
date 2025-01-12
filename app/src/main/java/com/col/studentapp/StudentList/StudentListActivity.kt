@@ -1,5 +1,6 @@
 package com.col.studentapp.StudentList
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -8,29 +9,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.col.studentapp.CreateStudentActivity
 import com.col.studentapp.R
+import com.col.studentapp.StudentDetailsActivity
 import com.col.studentapp.databinding.ActivityStudentListBinding
+import com.col.studentapp.model.Model
 import com.col.studentapp.model.Student
 
 class StudentListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityStudentListBinding
     private lateinit var studentRecyclerAdapter: StudentRecyclerAdapter
-    private var students: List<Student> = listOf(
-        Student(1, "aaaa", false, ""),
-        Student(2, "bbbb", false, ""),
-        Student(3, "cccc", false, ""),
-        Student(4, "dddd", false, ""),
-        Student(4, "dddd", false, ""),
-        Student(4, "dddd", false, ""),
-        Student(4, "dddd", false, ""),
-        Student(4, "dddd", false, ""),
-        Student(4, "dddd", false, ""),
-        Student(4, "dddd", false, ""),
-        Student(4, "dddd", false, ""),
-        Student(4, "dddd", false, ""),
-        Student(4, "dddd", false, "")
-    )
-
+    private var students: List<Student>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +35,11 @@ class StudentListActivity : AppCompatActivity() {
 
         initToolbar()
         initStudentList()
+
+        binding.addStudentButton.setOnClickListener {
+            val intent = Intent(this, CreateStudentActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun initToolbar() {
@@ -65,14 +59,30 @@ class StudentListActivity : AppCompatActivity() {
             val linearLayoutManager = LinearLayoutManager(context)
             layoutManager = linearLayoutManager
 
-            studentRecyclerAdapter = StudentRecyclerAdapter(students)
+            studentRecyclerAdapter = StudentRecyclerAdapter(Model.shared.getAllStudents())
             studentRecyclerAdapter.listener = object : OnItemClickListener {
                 override fun onItemClick(student: Student) {
-                    println(student.name)
+                    val intent =
+                        Intent(this@StudentListActivity, StudentDetailsActivity::class.java)
+                    intent.putExtra("studentId", student.id)
+                    startActivity(intent)
                 }
             }
 
             adapter = studentRecyclerAdapter
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getAllStudents()
+    }
+
+    private fun getAllStudents() {
+        Model.shared.getAllStudents().let {
+            this.students = it
+            studentRecyclerAdapter.students = it
+            studentRecyclerAdapter.notifyDataSetChanged()
         }
     }
 

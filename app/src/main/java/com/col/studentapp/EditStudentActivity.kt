@@ -19,7 +19,7 @@ class EditStudentActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val studentId = intent.getStringExtra("studentId") ?: ""
+        val studentId = intent.getIntExtra("studentId", 0)
         student = Model.shared.getStudentById(studentId) ?: return
 
 
@@ -41,18 +41,17 @@ class EditStudentActivity : AppCompatActivity() {
     private fun onSaveClicked(view: View) {
 
         val name = binding.nameEditText.text.toString()
-        val id = binding.idEditText.text.toString()
+        val id = binding.idEditText.text.toString().toIntOrNull()
         val phone = binding.phoneEditText.text.toString()
         val address = binding.addressEditText.text.toString()
         val isChecked = binding.checkedCheckBox.isChecked
 
 
-        if (name.isEmpty() || id.isEmpty() || phone.isEmpty() || address.isEmpty()) {
+        if (name.isEmpty() || id == null || phone.isEmpty() || address.isEmpty()) {
             binding.saveMessageTextView.text = "Please fill out all fields."
             binding.saveMessageTextView.visibility = View.VISIBLE
             return
         }
-
 
         student.name = name
         student.id = id
