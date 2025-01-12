@@ -1,5 +1,6 @@
 package com.col.studentapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
@@ -30,6 +31,12 @@ class StudentDetailsActivity : AppCompatActivity() {
 
     private fun injectStudentDataIntoView() {
         val studentId = intent.getIntExtra("studentId", 0)
+
+        binding.editButton.setOnClickListener{
+            val intent = Intent(this, EditStudentActivity::class.java)
+            intent.putExtra("studentId", studentId)
+            startActivity(intent)
+        }
 
         val student = Model.shared.getStudentById(studentId)!!
 
