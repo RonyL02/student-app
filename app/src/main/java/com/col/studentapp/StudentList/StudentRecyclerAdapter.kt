@@ -4,12 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.col.studentapp.databinding.StudentRowBinding
-
-data class Student(
-    val id: Int,
-    val name: String,
-    var isChecked: Boolean
-)
+import com.col.studentapp.model.Student
 
 interface OnItemClickListener {
     fun onItemClick(student: Student)

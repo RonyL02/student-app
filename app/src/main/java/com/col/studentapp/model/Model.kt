@@ -28,7 +28,7 @@ class Model private constructor() {
         }
     }
 
-    fun getStudentById(studentId: String): Student? {
+    fun getStudentById(studentId: Int): Student? {
         return students.find { it.id == studentId }
     }
 }

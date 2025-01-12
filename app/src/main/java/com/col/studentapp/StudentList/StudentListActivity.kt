@@ -10,32 +10,25 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.col.studentapp.R
 import com.col.studentapp.databinding.ActivityStudentListBinding
+import com.col.studentapp.model.Student
 
 class StudentListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityStudentListBinding
     private lateinit var studentRecyclerAdapter: StudentRecyclerAdapter
     private var students: List<Student> = listOf(
-        Student(1, "aaaa", false),
-        Student(2, "bbbb", false),
-        Student(3, "cccc", false),
-        Student(4, "dddd", false),
-        Student(4, "dddd", false),
-        Student(4, "dddd", false),
-        Student(4, "dddd", false),
-        Student(4, "dddd", false),
-        Student(4, "dddd", false),
-        Student(4, "dddd", false),
-        Student(4, "dddd", false),
-        Student(4, "dddd", false),
-        Student(4, "dddd", false),
-        Student(4, "dddd", false),
-        Student(4, "dddd", false),
-        Student(4, "dddd", false),
-        Student(4, "dddd", false),
-        Student(4, "dddd", false),
-        Student(4, "dddd", false),
-        Student(4, "dddd", false),
-        Student(7, "dddd", false)
+        Student(1, "aaaa", false, ""),
+        Student(2, "bbbb", false, ""),
+        Student(3, "cccc", false, ""),
+        Student(4, "dddd", false, ""),
+        Student(4, "dddd", false, ""),
+        Student(4, "dddd", false, ""),
+        Student(4, "dddd", false, ""),
+        Student(4, "dddd", false, ""),
+        Student(4, "dddd", false, ""),
+        Student(4, "dddd", false, ""),
+        Student(4, "dddd", false, ""),
+        Student(4, "dddd", false, ""),
+        Student(4, "dddd", false, "")
     )
 
 
@@ -85,7 +78,6 @@ class StudentListActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (item.itemId == android.R.id.home) {
-            Log.i("dsfsdfs", "dsfsfdsfsdfsdfds")
             finish()
             true
         } else {

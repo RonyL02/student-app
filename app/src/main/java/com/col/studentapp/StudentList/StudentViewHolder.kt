@@ -4,6 +4,7 @@ import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.col.studentapp.databinding.StudentRowBinding
+import com.col.studentapp.model.Student
 
 class StudentViewHolder(
     itemView: StudentRowBinding,
