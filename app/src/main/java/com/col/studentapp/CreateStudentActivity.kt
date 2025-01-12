@@ -42,7 +42,8 @@ class CreateStudentActivity : AppCompatActivity() {
         val student = Student(
             name = name,
             id = id,
-
+            phone=phone,
+            address=address,
             avatarUrl = "", // Assuming avatarUrl is not collected in this form
             isChecked = isChecked
         )

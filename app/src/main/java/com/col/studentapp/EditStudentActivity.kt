@@ -34,8 +34,7 @@ class EditStudentActivity : AppCompatActivity() {
     private fun populateFields() {
         binding.nameEditText.setText(student.name)
         binding.idEditText.setText(student.id)
-        binding.phoneEditText.setText(student.phone)
-        binding.addressEditText.setText(student.address)
+      
         binding.checkedCheckBox.isChecked = student.isChecked
     }
 
@@ -57,8 +56,7 @@ class EditStudentActivity : AppCompatActivity() {
 
         student.name = name
         student.id = id
-        student.phone = phone
-        student.address = address
+
         student.isChecked = isChecked
 
 

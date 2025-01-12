@@ -27,7 +27,7 @@
         android:text="Name:"
         app:layout_constraintTop_toBottomOf="@id/avatarImageView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintMarginStart="16dp" />
+        />
 
     <EditText
         android:id="@+id/nameEditText"
@@ -46,10 +46,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ID:"
-        app:layout_constraintTop_toBottomOf="@id/nameEditText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintMarginStart="16dp"
-        app:layout_constraintMarginTop="8dp" />
+        app:layout_constraintTop_toBottomOf="@id/nameEditText" />
+
 
     <EditText
         android:id="@+id/idEditText"
@@ -69,9 +67,7 @@
         android:layout_height="wrap_content"
         android:text="Phone:"
         app:layout_constraintTop_toBottomOf="@id/idEditText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintMarginStart="16dp"
-        app:layout_constraintMarginTop="8dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/phoneEditText"
@@ -92,8 +88,7 @@
         android:text="Address:"
         app:layout_constraintTop_toBottomOf="@id/phoneEditText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintMarginStart="16dp"
-        app:layout_constraintMarginTop="8dp" />
+       />
 
     <EditText
         android:id="@+id/addressEditText"
@@ -115,7 +110,7 @@
         android:text="Checked"
         app:layout_constraintTop_toBottomOf="@id/addressEditText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintMarginStart="16dp" />
+         />
 
     <!-- Save message -->
     <TextView
