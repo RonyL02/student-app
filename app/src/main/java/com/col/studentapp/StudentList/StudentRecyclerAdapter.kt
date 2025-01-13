@@ -10,7 +10,7 @@ interface OnItemClickListener {
     fun onItemClick(student: Student)
 }
 
-class StudentRecyclerAdapter(private var students: List<Student>) :
+class StudentRecyclerAdapter(var students: List<Student>) :
     RecyclerView.Adapter<StudentViewHolder>() {
 
     lateinit var listener: OnItemClickListener
