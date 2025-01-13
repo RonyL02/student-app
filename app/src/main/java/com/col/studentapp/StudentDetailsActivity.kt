@@ -12,6 +12,7 @@ import com.col.studentapp.model.Model
 
 class StudentDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityStudentDetailsBinding
+    private var studentId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,20 +26,29 @@ class StudentDetailsActivity : AppCompatActivity() {
             insets
         }
 
-        initToolbar()
-        injectStudentDataIntoView()
-    }
-
-    private fun injectStudentDataIntoView() {
-        val studentId = intent.getIntExtra("studentId", 0)
-
-        binding.editButton.setOnClickListener{
+        studentId = intent.getIntExtra("studentId", 0)
+        binding.editButton.setOnClickListener {
             val intent = Intent(this, EditStudentActivity::class.java)
             intent.putExtra("studentId", studentId)
             startActivity(intent)
         }
 
-        val student = Model.shared.getStudentById(studentId)!!
+        initToolbar()
+        injectStudentDataIntoView()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        injectStudentDataIntoView()
+    }
+
+    private fun injectStudentDataIntoView() {
+        val student = Model.shared.getStudentById(studentId)
+
+        if (student == null) {
+            finish()
+            return
+        }
 
         binding.apply {
             idValue.text = student.id.toString()
@@ -48,6 +58,7 @@ class StudentDetailsActivity : AppCompatActivity() {
             checkBox.apply {
                 isChecked = student.isChecked
                 tag = student.id
+                isEnabled = false
             }
         }
     }
