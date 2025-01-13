@@ -2,7 +2,6 @@ package com.col.studentapp.StudentList
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -19,7 +18,6 @@ import com.col.studentapp.model.Student
 class StudentListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityStudentListBinding
     private lateinit var studentRecyclerAdapter: StudentRecyclerAdapter
-    private var students: List<Student>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +56,6 @@ class StudentListActivity : AppCompatActivity() {
 
             val linearLayoutManager = LinearLayoutManager(context)
             layoutManager = linearLayoutManager
-
             studentRecyclerAdapter = StudentRecyclerAdapter(Model.shared.getAllStudents())
             studentRecyclerAdapter.listener = object : OnItemClickListener {
                 override fun onItemClick(student: Student) {
@@ -80,7 +77,6 @@ class StudentListActivity : AppCompatActivity() {
 
     private fun getAllStudents() {
         Model.shared.getAllStudents().let {
-            this.students = it
             studentRecyclerAdapter.students = it
             studentRecyclerAdapter.notifyDataSetChanged()
         }

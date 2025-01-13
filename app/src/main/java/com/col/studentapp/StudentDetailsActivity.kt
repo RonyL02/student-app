@@ -44,7 +44,6 @@ class StudentDetailsActivity : AppCompatActivity() {
             idValue.text = student.id.toString()
             nameValue.text = student.name
             phoneValue.text = student.phone
-            println(student.phone)
             addressValue.text = student.address
             checkBox.apply {
                 isChecked = student.isChecked
