@@ -12,7 +12,7 @@ import com.col.studentapp.model.Model
 
 class StudentDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityStudentDetailsBinding
-    private var studentId: Int = 0
+    private var studentIndex: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,10 +26,10 @@ class StudentDetailsActivity : AppCompatActivity() {
             insets
         }
 
-        studentId = intent.getIntExtra("studentId", 0)
+        studentIndex = intent.getIntExtra("studentIndex", 0)
         binding.editButton.setOnClickListener {
             val intent = Intent(this, EditStudentActivity::class.java)
-            intent.putExtra("studentId", studentId)
+            intent.putExtra("studentIndex", studentIndex)
             startActivity(intent)
         }
 
@@ -43,12 +43,7 @@ class StudentDetailsActivity : AppCompatActivity() {
     }
 
     private fun injectStudentDataIntoView() {
-        val student = Model.shared.getStudentById(studentId)
-
-        if (student == null) {
-            finish()
-            return
-        }
+        val student = Model.shared.getByIndex(studentIndex)
 
         binding.apply {
             idValue.text = student.id.toString()

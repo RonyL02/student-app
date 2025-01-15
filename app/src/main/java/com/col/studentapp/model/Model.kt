@@ -28,9 +28,10 @@ class Model private constructor() {
         }
     }
 
-    fun getStudentById(studentId: Int): Student? {
-        return students.find { it.id == studentId }
+    fun getByIndex(index: Int): Student {
+        return students[index]
     }
+
     fun delete(student: Student) {
         students.removeIf { it.id == student.id }
     }

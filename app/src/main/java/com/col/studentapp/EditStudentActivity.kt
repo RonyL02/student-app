@@ -1,9 +1,11 @@
 package com.col.studentapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.col.studentapp.StudentList.StudentListActivity
 import com.col.studentapp.databinding.ActivityEditStudentBinding
 import com.col.studentapp.model.Model
 import com.col.studentapp.model.Student
@@ -20,12 +22,10 @@ class EditStudentActivity : AppCompatActivity() {
 
         initToolbar()
 
-        val studentId = intent.getIntExtra("studentId", 0)
-        student = Model.shared.getStudentById(studentId) ?: return
-
+        val studentIndex = intent.getIntExtra("studentIndex", 0)
+        student = Model.shared.getByIndex(studentIndex)
 
         populateFields()
-
 
         binding.saveButton.setOnClickListener(::onSaveClicked)
         binding.cancelButton.setOnClickListener(::onCancelClicked)
@@ -62,22 +62,20 @@ class EditStudentActivity : AppCompatActivity() {
         binding.progressBar.visibility = View.VISIBLE
         Model.shared.update(student)
 
-
         binding.progressBar.visibility = View.GONE
         finish()
     }
 
     private fun onDeleteClicked(view: View) {
-
         binding.progressBar.visibility = View.VISIBLE
         Model.shared.delete(student)
 
         binding.progressBar.visibility = View.GONE
-        finish()
+        val intent = Intent(this, StudentListActivity::class.java)
+        startActivity(intent)
     }
 
     private fun onCancelClicked(view: View) {
-
         finish()
     }
 

@@ -13,7 +13,7 @@ import com.col.studentapp.R
 import com.col.studentapp.StudentDetailsActivity
 import com.col.studentapp.databinding.ActivityStudentListBinding
 import com.col.studentapp.model.Model
-import com.col.studentapp.model.Student
+import kotlin.system.exitProcess
 
 class StudentListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityStudentListBinding
@@ -58,10 +58,10 @@ class StudentListActivity : AppCompatActivity() {
             layoutManager = linearLayoutManager
             studentRecyclerAdapter = StudentRecyclerAdapter(Model.shared.getAllStudents())
             studentRecyclerAdapter.listener = object : OnItemClickListener {
-                override fun onItemClick(student: Student) {
+                override fun onItemClick(position: Int) {
                     val intent =
                         Intent(this@StudentListActivity, StudentDetailsActivity::class.java)
-                    intent.putExtra("studentId", student.id)
+                    intent.putExtra("studentIndex", position)
                     startActivity(intent)
                 }
             }
@@ -84,8 +84,8 @@ class StudentListActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (item.itemId == android.R.id.home) {
-            finish()
-            true
+            finishAffinity()
+            exitProcess(0)
         } else {
             super.onOptionsItemSelected(item)
         }
