@@ -7,7 +7,7 @@ import com.col.studentapp.databinding.StudentRowBinding
 import com.col.studentapp.model.Student
 
 interface OnItemClickListener {
-    fun onItemClick(student: Student)
+    fun onItemClick(position: Int)
 }
 
 class StudentRecyclerAdapter(var students: List<Student>) :
@@ -25,13 +25,5 @@ class StudentRecyclerAdapter(var students: List<Student>) :
 
     override fun onBindViewHolder(holder: StudentViewHolder, position: Int) {
         holder.bind(students[position], position)
-    }
-
-    fun setOnItemClickListener(listener: OnItemClickListener) {
-        this.listener = listener
-    }
-
-    fun onClick(position: Int) {
-        listener.onItemClick(students[position])
     }
 }

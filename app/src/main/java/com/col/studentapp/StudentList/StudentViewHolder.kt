@@ -9,11 +9,12 @@ import com.col.studentapp.model.Student
 class StudentViewHolder(
     itemView: StudentRowBinding,
     listener: OnItemClickListener
-): RecyclerView.ViewHolder(itemView.root) {
+) : RecyclerView.ViewHolder(itemView.root) {
     private var nameTextView: TextView
     private var idTextView: TextView
     private var checkBox: CheckBox
     private lateinit var student: Student
+    private var position: Int = 0
 
     init {
         nameTextView = itemView.studentRowNameTextView
@@ -29,13 +30,13 @@ class StudentViewHolder(
         }
 
         itemView.root.setOnClickListener {
-            listener.onItemClick(student)
+            listener.onItemClick(position)
         }
     }
 
     fun bind(student: Student, position: Int) {
-        println(student.name)
         this.student = student
+        this.position = position
         nameTextView.text = student.name
         student.id.toString().also { idTextView.text = it }
         checkBox.apply {

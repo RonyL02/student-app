@@ -20,12 +20,10 @@ class EditStudentActivity : AppCompatActivity() {
 
         initToolbar()
 
-        val studentId = intent.getIntExtra("studentId", 0)
-        student = Model.shared.getStudentById(studentId) ?: return
-
+        val studentIndex = intent.getIntExtra("studentIndex", 0)
+        student = Model.shared.getByIndex(studentIndex)
 
         populateFields()
-
 
         binding.saveButton.setOnClickListener(::onSaveClicked)
         binding.cancelButton.setOnClickListener(::onCancelClicked)
@@ -62,7 +60,6 @@ class EditStudentActivity : AppCompatActivity() {
         binding.progressBar.visibility = View.VISIBLE
         Model.shared.update(student)
 
-
         binding.progressBar.visibility = View.GONE
         finish()
     }
@@ -77,7 +74,6 @@ class EditStudentActivity : AppCompatActivity() {
     }
 
     private fun onCancelClicked(view: View) {
-
         finish()
     }
 
