@@ -14,6 +14,7 @@ class EditStudentActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditStudentBinding
     private lateinit var student: Student
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -27,17 +28,21 @@ class EditStudentActivity : AppCompatActivity() {
 
         populateFields()
 
-        binding.saveButton.setOnClickListener(::onSaveClicked)
-        binding.cancelButton.setOnClickListener(::onCancelClicked)
-        binding.deleteButton.setOnClickListener(::onDeleteClicked)
+        binding.apply {
+            saveButton.setOnClickListener(::onSaveClicked)
+            cancelButton.setOnClickListener(::onCancelClicked)
+            deleteButton.setOnClickListener(::onDeleteClicked)
+        }
     }
 
     private fun populateFields() {
-        binding.studentFrom.nameEditText.setText(student.name)
-        binding.studentFrom.idEditText.setText(student.id.toString())
-        binding.studentFrom.phoneEditText.setText(student.phone)
-        binding.studentFrom.addressEditText.setText(student.address)
-        binding.studentFrom.checkedCheckBox.isChecked = student.isChecked
+        binding.apply {
+            studentFrom.nameEditText.setText(student.name)
+            studentFrom.idEditText.setText(student.id.toString())
+            studentFrom.phoneEditText.setText(student.phone)
+            studentFrom.addressEditText.setText(student.address)
+            studentFrom.checkedCheckBox.isChecked = student.isChecked
+        }
     }
 
     private fun onSaveClicked(view: View) {

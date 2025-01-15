@@ -20,8 +20,10 @@ class CreateStudentActivity : AppCompatActivity() {
 
         initToolbar()
 
-        binding.saveButton.setOnClickListener(::onSaveClicked)
-        binding.cancelButton.setOnClickListener(::onCancelClicked)
+        binding.apply {
+            saveButton.setOnClickListener(::onSaveClicked)
+            cancelButton.setOnClickListener(::onCancelClicked)
+        }
     }
 
     private fun onSaveClicked(view: View) {
