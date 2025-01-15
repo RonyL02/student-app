@@ -11,6 +11,7 @@ import com.col.studentapp.databinding.ActivityStudentDetailsBinding
 import com.col.studentapp.model.Model
 
 class StudentDetailsActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityStudentDetailsBinding
     private var studentIndex: Int = 0
 
