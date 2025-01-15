@@ -20,7 +20,6 @@ class StudentViewHolder(
         nameTextView = itemView.studentRowNameTextView
         idTextView = itemView.studentRowIdTextView
         checkBox = itemView.studentRowCheckBox
-
         checkBox.apply {
             setOnClickListener { view ->
                 (tag as? Int)?.let {
