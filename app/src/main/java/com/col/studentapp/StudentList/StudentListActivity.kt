@@ -13,6 +13,7 @@ import com.col.studentapp.R
 import com.col.studentapp.StudentDetailsActivity
 import com.col.studentapp.databinding.ActivityStudentListBinding
 import com.col.studentapp.model.Model
+import kotlin.system.exitProcess
 
 class StudentListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityStudentListBinding
@@ -83,8 +84,8 @@ class StudentListActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (item.itemId == android.R.id.home) {
-            finish()
-            true
+            finishAffinity()
+            exitProcess(0)
         } else {
             super.onOptionsItemSelected(item)
         }
