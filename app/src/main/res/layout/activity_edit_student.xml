@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="New Student" />
+        app:title="Edit Student" />
 
 
     <include
@@ -27,7 +27,6 @@
         android:layout_marginTop="50dp"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Save, Cancel, and Delete Buttons -->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -37,21 +36,30 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cancel" />
+
+        <Button
+            android:id="@+id/deleteButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/holo_red_dark"
+            android:text="Delete"
+            android:textColor="@android:color/white" />
+
+        <Button
             android:id="@+id/saveButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Save" />
 
-        <Button
-            android:id="@+id/cancelButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Cancel" />
     </LinearLayout>
 
-    <!-- Progress Bar -->
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"

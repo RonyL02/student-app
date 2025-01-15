@@ -1,6 +1,7 @@
 package com.col.studentapp
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.col.studentapp.databinding.ActivityCreateStudentBinding
@@ -14,54 +15,66 @@ class CreateStudentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Inflate the layout using ViewBinding
         binding = ActivityCreateStudentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Set listeners for Save and Cancel buttons
+        initToolbar()
+
         binding.saveButton.setOnClickListener(::onSaveClicked)
         binding.cancelButton.setOnClickListener(::onCancelClicked)
     }
 
     private fun onSaveClicked(view: View) {
-        // Retrieve input data from user
-        val name = binding.nameEditText.text.toString()
-        val id = binding.idEditText.text.toString().toIntOrNull()
-        val phone = binding.phoneEditText.text.toString()
-        val address = binding.addressEditText.text.toString()
-        val isChecked = binding.checkedCheckBox.isChecked
+        val name = binding.studentFrom.nameEditText.text.toString()
+        val id = binding.studentFrom.idEditText.text.toString().toIntOrNull()
+        val phone = binding.studentFrom.phoneEditText.text.toString()
+        val address = binding.studentFrom.addressEditText.text.toString()
+        val isChecked = binding.studentFrom.checkedCheckBox.isChecked
 
-        // Validate input fields
         if (name.isEmpty() || id == null || phone.isEmpty() || address.isEmpty()) {
-            binding.saveMessageTextView.text = "Please fill out all fields."
-            binding.saveMessageTextView.visibility = View.VISIBLE // Show the message
+            binding.studentFrom.saveMessageTextView.text = "Please fill out all fields."
+            binding.studentFrom.saveMessageTextView.visibility = View.VISIBLE // Show the message
             return
         }
 
-        // Create a new Student object
         val student = Student(
             name = name,
             id = id,
-            phone=phone,
-            address=address,
-            avatarUrl = "", // Assuming avatarUrl is not collected in this form
+            phone = phone,
+            address = address,
+            avatarUrl = "",
             isChecked = isChecked
         )
 
-        // Hide error message and show progress bar
-        binding.saveMessageTextView.visibility = View.GONE
+        binding.studentFrom.saveMessageTextView.visibility = View.GONE
         binding.progressBar.visibility = View.VISIBLE
 
-        // Add the student to the model
         Model.shared.add(student)
 
-        // Hide progress bar and close the activity
         binding.progressBar.visibility = View.GONE
-        finish() // Close the activity
+        finish()
     }
 
     private fun onCancelClicked(view: View) {
-        // Close the activity
         finish()
+    }
+
+    private fun initToolbar() {
+        val toolbar = binding.toolbar
+        setSupportActionBar(toolbar)
+
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if (item.itemId == android.R.id.home) {
+            finish()
+            true
+        } else {
+            super.onOptionsItemSelected(item)
+        }
     }
 }
